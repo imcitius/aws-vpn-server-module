@@ -16,14 +16,13 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "vpn" {
 
-  count = var.count
-  name = "${element(data.template_file.name.*.rendered, var.count.index)}"
+  count = var.servers_count
 
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name = ssh_key_name
+  key_name = var.ssh_key_name
   associate_public_ip_address = true
-  private_ip = "${element(data.template_file.ip.*.rendered, var.count.index)}"
+  private_ip = element(data.template_file.ip.*.rendered, count.index)
 
   subnet_id = aws_subnet.vpn.id
 
@@ -32,12 +31,12 @@ resource "aws_instance" "vpn" {
   ]
 
   tags = {
-    Name = "vpn instance"
+    Name = element(data.template_file.name.*.rendered, count.index)
   }
 
-#  provisioner "local-exec" {
-#    command = "echo ${aws_instance.vpn.public_ip} >> private_ip.txt"
-#  }
+  provisioner "local-exec" {
+    command = "echo ${self.public_ip} >> public_ip.txt"
+  }
 
 #  provisioner "local-exec" {
 #    command = "./provision.sh"
