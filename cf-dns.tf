@@ -4,7 +4,6 @@ resource "cloudflare_record" "vpn-servers" {
 
   zone_id = var.cloudflare_zone_id
   name    = "${var.aws_region}.${var.dns_domain}"
-  // value   = element(tolist(aws_instance.vpn.public_ip.*), count.index)
   value   = element(aws_instance.vpn.*.public_ip, count.index)
   type    = "A"
   ttl     = 600
