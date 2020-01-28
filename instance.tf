@@ -31,7 +31,7 @@ resource "aws_instance" "vpn" {
   }
 
   provisioner "local-exec" {
-    command = "echo 'project=${ANSIBLE_PROJECT}' >> vpn_server_${self.id}.txt"
+    command = "echo 'project=${var.ansible_project}' >> vpn_server_${self.id}.txt"
   }
 
   provisioner "local-exec" {
