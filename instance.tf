@@ -19,7 +19,19 @@ resource "aws_instance" "vpn" {
   }
 
   provisioner "local-exec" {
-    command = "echo '${self.public_ip} id=${self.id} aws_region=${var.aws_region}' > vpn_server_${self.id}.txt"
+    command = "echo '[faceless-vpn-server-ike]' > vpn_server_${self.id}.txt"
+  }
+
+  provisioner "local-exec" {
+    command = "echo '${self.public_ip} id=${self.id} aws_region=${var.aws_region}' >> vpn_server_${self.id}.txt"
+  }
+
+  provisioner "local-exec" {
+    command = "echo '[all:vars]' >> vpn_server_${self.id}.txt"
+  }
+
+  provisioner "local-exec" {
+    command = "echo 'project=${ANSIBLE_PROJECT}' >> vpn_server_${self.id}.txt"
   }
 
   provisioner "local-exec" {
