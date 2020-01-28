@@ -19,11 +19,20 @@ resource "aws_instance" "vpn" {
   }
 
   provisioner "local-exec" {
+    command = "echo '[vpn-server-ike]' > public_ip.txt"
+  }
+
+  provisioner "local-exec" {
     command = "echo ${self.public_ip} >> public_ip.txt"
   }
 
-#  provisioner "local-exec" {
-#    command = "./provision.sh"
-#  }
+  provisioner "local-exec" {
+    command = "./provision.sh"
+  }
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "rm -f public_ip.txt"
+  }
 
 }
