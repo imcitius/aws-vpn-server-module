@@ -14,6 +14,10 @@ resource "aws_instance" "vpn" {
     aws_security_group.vpn.id
   ]
 
+  root_block_device {
+    delete_on_termination = true
+  }
+
   tags = {
     Name = element(data.template_file.name.*.rendered, count.index)
   }
