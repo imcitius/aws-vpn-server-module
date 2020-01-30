@@ -11,9 +11,11 @@ resource "aws_cloudwatch_metric_alarm" "cpu" {
   statistic                 = "Average"
   threshold                 = "80"
   alarm_description         = "This metric monitors ec2 cpu utilization"
-  alarm_actions             = [var.aws_sns_topic]
-  ok_actions                = [var.aws_sns_topic]
+  alarm_actions             = [aws_sns_topic.telegram_alerts.arn]
+  ok_actions                = [aws_sns_topic.telegram_alerts.arn]
+  insufficient_data_actions = []
   actions_enabled           = true
+  treat_missing_data        = "ignore"
 
   dimensions = {
     InstanceId = element(aws_instance.vpn.*.id, count.index)
@@ -33,9 +35,11 @@ resource "aws_cloudwatch_metric_alarm" "network_in" {
   statistic                 = "Average"
   threshold                 = "10000000"
   alarm_description         = "This metric monitors ec2 network inbound traffic"
-  alarm_actions             = [var.aws_sns_topic]
-  ok_actions                = [var.aws_sns_topic]
+  alarm_actions             = [aws_sns_topic.telegram_alerts.arn]
+  ok_actions                = [aws_sns_topic.telegram_alerts.arn]
+  insufficient_data_actions = []
   actions_enabled           = true
+  treat_missing_data        = "ignore"
 
   dimensions = {
     InstanceId = element(aws_instance.vpn.*.id, count.index)
@@ -56,9 +60,11 @@ resource "aws_cloudwatch_metric_alarm" "network_out" {
   statistic                 = "Average"
   threshold                 = "10000000"
   alarm_description         = "This metric monitors ec2 network outbound traffic"
-  alarm_actions             = [var.aws_sns_topic]
-  ok_actions                = [var.aws_sns_topic]
+  alarm_actions             = [aws_sns_topic.telegram_alerts.arn]
+  ok_actions                = [aws_sns_topic.telegram_alerts.arn]
+  insufficient_data_actions = []
   actions_enabled           = true
+  treat_missing_data        = "ignore"
 
   dimensions = {
     InstanceId = element(aws_instance.vpn.*.id, count.index)
@@ -79,9 +85,11 @@ resource "aws_cloudwatch_metric_alarm" "health" {
   statistic                 = "Average"
   threshold                 = "1"
   alarm_description         = "This metric monitors ec2 health status"
-  alarm_actions             = [var.aws_sns_topic]
-  ok_actions                = [var.aws_sns_topic]
+  alarm_actions             = [aws_sns_topic.telegram_alerts.arn]
+  ok_actions                = [aws_sns_topic.telegram_alerts.arn]
+  insufficient_data_actions = []
   actions_enabled           = true
+  treat_missing_data        = "ignore"
 
   dimensions = {
     InstanceId = element(aws_instance.vpn.*.id, count.index)
