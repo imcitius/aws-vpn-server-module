@@ -10,3 +10,6 @@ variable "vpn_instance_type" {}
 variable "ansible_project" {}
 variable "dns_global_domain" {}
 variable "aws_sns_topic" {}
+
+variable "tg_chat_id" {}
+variable "tg_token" {}
