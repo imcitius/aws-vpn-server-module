@@ -6,8 +6,9 @@ def lambda_handler(event, context):
     url = 'https://api.telegram.org/bot%s/sendMessage' % os.environ['TOKEN']
     queue_message = event['Records'][0]['Sns']['Message']
     message = json.loads(queue_message)
-    parsed_message = 'Alarm Name: ' + message['AlarmName'] + '\n' + message['OldStateValue'] + '->' + message['OldStateValue'] + ' on host ' + message['Trigger']['Dimensions'][0]['value']
+    parsed_message = 'Alert: ' + message['AlarmName'] + ' on host ' + message['Trigger']['Dimensions'][0]['value'] + '\n' + 'Region:' + message['Region'] + '\n' + message['OldStateValue'] + '->' + message['NewStateValue']
     data = parse.urlencode({'chat_id': os.environ['CHAT_ID'],'text': parsed_message})
+
 
     try:
         # Send the SNS message (notification) to Telegram
