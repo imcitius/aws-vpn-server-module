@@ -2,6 +2,7 @@ variable "aws_region" {}
 variable "vpn_ami_id" {}
 variable "vpn_instance_type" {}
 variable "ssh_key_name" {}
+variable "ssh_public_key" {}
 variable "servers_count" {
     default = "1"
 }
