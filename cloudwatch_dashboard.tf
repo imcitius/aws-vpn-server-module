@@ -58,7 +58,7 @@ locals {
 }
 
 resource "aws_cloudwatch_dashboard" "main" {
-  dashboard_name = "VPN_servers"
+  dashboard_name = "VPN-servers-${var.aws_region}"
 
   dashboard_body = jsonencode(local.dashboard)
 
