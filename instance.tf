@@ -48,9 +48,8 @@ resource "aws_instance" "vpn" {
   }
 
 
-# нельзя, потому что конфликт по ip. надо сначала научить брать реально свободный адрес
   lifecycle {
-    create_before_destroy = false
+    create_before_destroy = true
   }
 
 }
