@@ -6,7 +6,7 @@ resource "aws_instance" "vpn" {
   instance_type = var.vpn_instance_type
   key_name = var.ssh_key_name
   associate_public_ip_address = true
-  private_ip = element(data.template_file.ip.*.rendered, count.index)
+  // private_ip = element(data.template_file.ip.*.rendered, count.index)
 
   subnet_id = aws_subnet.vpn.id
 
