@@ -5,5 +5,5 @@ data "template_file" "name" {
 
 data "template_file" "ip" {
   count    = var.servers_count
-  template = "10.0.0.${count.index}"
+  template = "10.0.0.${count.index+10}"
 }
