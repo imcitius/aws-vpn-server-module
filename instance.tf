@@ -47,6 +47,8 @@ resource "aws_instance" "vpn" {
     command = "rm -f vpn_server_${self.id}.txt"
   }
 
+
+# нельзя, потому что конфликт по ip. надо сначала научить брать реально свободный адрес
   lifecycle {
     create_before_destroy = false
   }
