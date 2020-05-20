@@ -48,7 +48,7 @@ resource "aws_instance" "vpn" {
   }
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = false
   }
 
 
