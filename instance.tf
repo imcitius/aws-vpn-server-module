@@ -53,5 +53,4 @@ resource "aws_instance" "vpn" {
     create_before_destroy = false
   }
 
-
 }
