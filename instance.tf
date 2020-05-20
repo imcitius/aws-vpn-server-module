@@ -46,4 +46,10 @@ resource "aws_instance" "vpn" {
     when    = destroy
     command = "rm -f vpn_server_${self.id}.txt"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+
 }
