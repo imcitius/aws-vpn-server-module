@@ -10,6 +10,7 @@ resource "aws_security_group" "vpn" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
 
+# ssh
   ingress {
     from_port   = 22
     to_port     = 22
@@ -17,6 +18,7 @@ resource "aws_security_group" "vpn" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
 
+# openvpn
   ingress {
     from_port   = 443
     to_port     = 443
@@ -24,6 +26,7 @@ resource "aws_security_group" "vpn" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
 
+# IKE
   ingress {
     from_port   = 500
     to_port     = 500
@@ -31,6 +34,7 @@ resource "aws_security_group" "vpn" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
 
+# MobIKE
   ingress {
     from_port   = 4500
     to_port     = 4500
