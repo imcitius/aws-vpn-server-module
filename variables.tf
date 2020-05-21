@@ -1,5 +1,7 @@
 variable "aws_region" {}
-variable "availability_zone" {}
+variable "availability_zone" {
+    default = ""
+}
 
 variable "vpn_ami_id" {}
 variable "vpn_instance_type" {}
