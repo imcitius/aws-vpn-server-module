@@ -4,6 +4,7 @@ resource "aws_instance" "vpn" {
 
   ami           = var.vpn_ami_id
   instance_type = var.vpn_instance_type
+  availability_zone = var.availability_zone
   key_name = var.ssh_key_name
   associate_public_ip_address = true
   // private_ip = element(data.template_file.ip.*.rendered, count.index)

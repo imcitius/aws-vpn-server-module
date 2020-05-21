@@ -1,4 +1,6 @@
 variable "aws_region" {}
+variable "availability_zone" {}
+
 variable "vpn_ami_id" {}
 variable "vpn_instance_type" {}
 variable "ssh_key_name" {}
@@ -15,3 +17,4 @@ variable "tg_chat_id" {}
 variable "tg_token" {}
 
 variable "aws_iam_role_iam_for_lambda" {}
+
