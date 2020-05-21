@@ -15,6 +15,8 @@ resource "aws_subnet" "vpn" {
   cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = true
 
+  availability_zone = var.availability_zone
+
   depends_on = [
     aws_internet_gateway.vpn_gw
   ]
